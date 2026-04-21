@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peita de Cria 011</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #000; background-color: #fff; }
+        
+        /* Navbar com Logo Centralizada */
+        .navbar { background-color: #000; padding: 15px 0; }
+        .nav-link { color: #fff !important; text-transform: uppercase; font-weight: bold; cursor: pointer; }
+        .navbar-brand img { max-height: 50px; } 
+
+        /* Carrinho Flutuante */
+        .cart-btn { position: relative; background: none; border: none; color: #fff; font-size: 1.5rem; }
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: red; color: #fff; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; }
+
+        /* Carrossel Principal (Lookbook) */
+        .demo-carousel-container { border-bottom: 2px solid #000; border-top: 2px solid #000; }
+        .demo-carousel-container img { object-fit: cover; height: 800px; width: 100%; }
+
+        /* Abas e Vitrine */
+        .nav-tabs { border-bottom: 2px solid #000; justify-content: center; margin-bottom: 40px; margin-top: 40px; }
+        .nav-tabs .nav-link { color: #555 !important; border: none; font-size: 1.2rem; text-transform: uppercase; }
+        .nav-tabs .nav-link.active { color: #000 !important; border-bottom: 4px solid #000; font-weight: 900; }
+
+        /* Seção Sobre Nós - Fundo Preto e Letras Brancas */
+        .sobre-nos-section { background-color: #000; color: #fff; padding: 80px 0; text-align: center; border-top: 2px solid #fff; }
+
+        /* Página de Detalhes do Produto */
+        #detalhes-produto { display: none; padding: 60px 0; }
+        .carrossel-produto-img { object-fit: cover; height: 600px; width: 100%; background-color: #f8f9fa; }
+        .btn-whatsapp { background-color: #25D366; color: #fff; font-weight: bold; text-transform: uppercase; border: none; padding: 15px; }
+
+        /* Rodapé Social */
+        footer { background-color: #000; color: #fff; padding: 40px 0; text-align: center; }
+        .social-links a { color: #fff; font-size: 1.5rem; margin: 0 15px; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .carrossel-produto-img { height: 400px; }
+            .demo-carousel-container img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="filter: invert(1);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" onclick="voltarParaVitrine('camisas')">Camisas</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="voltarParaVitrine('regatas')">Regatas</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="voltarParaVitrine('meias')">Meias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre-nos">Sobre Nós</a></li>.
+                </ul>
+            </div>
+            <a class="navbar-brand mx-auto d-flex justify-content-center w-100" onclick="voltarParaVitrine()">
+                <span class="text-white fw-bolder fs-4">PEITA DE CRIA 011</span>
+                </a>
+            <div class="collapse navbar-collapse w-100 justify-content-end">
+                <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
+                    <i class="bi bi-bag-fill"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="area-principal">
+        <section class="hero-section text-center py-5">
+            <h1 class="fw-black display-4">DOS CRIAS DAQUI, PARA OS CRIAS DE LÁ.</h1>
+            <p class="lead">Peita de Cria 011. Estilo e identidade.</p>
+        </section>
+
+        <section class="demo-carousel-container">
+            <div id="carouselLookbook" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active"><img src="../peitadecria/fotos/carrossel-7.jpeg" class="d-block w-100" alt="Lookbook 1"></div>
+                    <div class="carousel-item"><img src="../peitadecria/fotos/carrossel-8.jpeg" class="d-block w-100" alt="Lookbook 2"></div>
+                     <div class="carousel-item"><img src="../peitadecria/fotos/carrossel-9.jpeg" class="d-block w-100" alt="Lookbook 2"></div>
+                      <div class="carousel-item"><img src="../peitadecria/fotos/carrossel-10.jpeg" class="d-block w-100" alt="Lookbook 2"></div>
+                       <div class="carousel-item"><img src="../peitadecria/fotos/carrossel-11.jpeg" class="d-block w-100" alt="Lookbook 2"></div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLookbook" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselLookbook" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+            </div>
+        </section>
+
+        <section id="vitrine-produtos" class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item"><button class="nav-link active" id="camisas-tab" data-bs-toggle="tab" data-bs-target="#camisas">Camisas</button></li>
+                <li class="nav-item"><button class="nav-link" id="regatas-tab" data-bs-toggle="tab" data-bs-target="#regatas">Regatas</button></li>
+                <li class="nav-item"><button class="nav-link" id="meias-tab" data-bs-toggle="tab" data-bs-target="#meias">Meias</button></li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="camisas"><div id="grid-camisas" class="row g-4"></div></div>
+                <div class="tab-pane fade" id="regatas"><div id="grid-regatas" class="row g-4"></div></div>
+                <div class="tab-pane fade" id="meias"><div id="grid-meias" class="row g-4"></div></div>
+            </div>
+        </section>
+
+        <section class="sobre-nos-section mt-5" id="sobre-nos">
+            <div class="container">
+                <h2 class="fw-black text-uppercase mb-4">Sobre nós</h2>
+                <p class="lead mx-auto" style="max-width: 800px;">
+                   A peita de cria 011 nasce com a finalidade de unir o estilo das ruas com a sofisticação das modas, afim de destacar e evidenciar o estilo, cultura e vivência urbana e periférica. Somos uma equipe de amigos empenhados e sonhadores como todos os "crias" de São Paulo e do Brasil. Ao adquirir nossos produtos confeccionados e selecionados especialmente pra fortalecer a ideia da marca, você se afirma enquanto Cria e mostra sua identidade enquanto sujeito de vivências e de luta. Venha fazer parte desse time. Aqui é #peitadecria011
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <section id="detalhes-produto" class="container">
+        <button class="btn btn-outline-dark mb-4 rounded-0" onclick="voltarParaVitrine()">← Voltar</button>
+        <div class="row">
+            <div class="col-lg-8"><div id="imagens-produto-detalhe" class="carousel slide" data-bs-ride="carousel"></div></div>
+            <div class="col-lg-4">
+                <h2 id="titulo-produto-detalhe" class="fw-bold text-uppercase"></h2>
+                <h3 id="preco-produto-detalhe" class="mb-4"></h3>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Quantidade (Estoque: <span id="estoque-disponivel"></span>):</label>
+                    <input type="number" id="qtd-selecionada" class="form-control rounded-0" value="1" min="1">
+                </div>
+
+                <button class="btn btn-dark w-100 rounded-0 p-3 fw-bold" onclick="adicionarAoCarrinho()">ADICIONAR AO CARRINHO</button>
+                <div id="info-detalhes" class="mt-4 border-top pt-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="fw-bold text-uppercase">Seu Carrinho</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="itens-carrinho"></div>
+            <div class="mt-auto border-top pt-3">
+                <div class="d-flex justify-content-between mb-3"><span class="fw-bold">Total:</span><span class="fw-bold" id="total-carrinho">R$ 0,00</span></div>
+                <button class="btn btn-whatsapp w-100" onclick="enviarCarrinhoWhatsApp()">FINALIZAR NO WHATSAPP</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-links mb-4">
+                <a href="https://www.instagram.com/peita_de_cria011?igsh=MWxwejMwZW5ybmI3YQ==" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://youtube.com/@peitadecria011?si=qGF9xLxDSuX2qZ9p" target="_blank"><i class="bi bi-youtube"></i></a>
+            </div>
+            <p class="mb-0">© 2026 Peita de Cria 011. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const meusProdutos = {
+            camisas: [
+                { id: 1, nome: "Camisa Oversized Nike Global", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-cinza-nike-planeta-1.jpeg",
+                    "../peitadecria/fotos/camisa-cinza-nike-planeta-2.jpeg",
+                    "../peitadecria/fotos/camisa-cinza-nike-planeta-3.jpeg",
+                    "../peitadecria/fotos/camisa-cinza-nike-planeta-4.jpeg",
+                    "../peitadecria/fotos/camisa-cinza-nike-planeta-5.jpeg",
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } },
+                { id: 2, nome: "Camisa Oversized Palm Angels", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-azulescuro-palmangels-1.jpeg",
+                    "../peitadecria/fotos/camisa-azulescuro-palmangels-2.jpeg",
+                    "../peitadecria/fotos/camisa-azulescuro-palmangels-3.jpeg",
+                    "../peitadecria/fotos/camisa-azulescuro-palmangels-4.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 3, nome: "Camisa Oversized The Nort Face Geodesic", preco: "69.90", estoque: 2, fotos: [
+                    "../peitadecria/fotos/camisa-detalhe-amarelo-modelo-branco-1.jpeg",
+                   "../peitadecria/fotos/camisa-detalhe-amarelo-modelo-branco-preto-1.jpeg",
+                    "../peitadecria/fotos/camisa-detalhe-amarelo-modelo-preto-1.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } },
+                { id: 4, nome: "Camisa Oversized Off White", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-preta-ofwhite-1.jpeg",
+                    "../peitadecria/fotos/camisa-preta-ofwhite-2.jpeg",
+                    "../peitadecria/fotos/camisa-preta-ofwhite-3.jpeg",
+                    "../peitadecria/fotos/camisa-preta-ofwhite-4.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 5, nome: "Camisa Oversized Off White", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-marrom-nike-1.jpeg",
+                    "../peitadecria/fotos/camisa-marrom-nike-2.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } },
+                { id: 6, nome: "Camisa Oversized The Nort Face", preco: "69.90", estoque: 2, fotos: [
+                    "../peitadecria/fotos/camisa-branca-detalhe-roxo.jpeg",
+                    "../peitadecria/fotos/camisa-branca-detalhe-roxo-2.jpeg",
+                    "../peitadecria/fotos/camisa8.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 7, nome: "Camisa Oversized Preta", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-preta-basica-6.jpeg",
+                    "../peitadecria/fotos/camisa-preta-basica-1.jpeg",
+                    "../peitadecria/fotos/camisa-preta-basica-2.jpeg",
+                    "../peitadecria/fotos/camisa-preta-basica-3.jpeg",
+                    "../peitadecria/fotos/camisa-preta-basica-4.jpeg",
+                    "../peitadecria/fotos/camisa-preta-basica-5.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } },
+                 { id: 8, nome: "Camisa Oversized Nike Just Do It", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-azul-justdoit-1.jpeg",
+                    "../peitadecria/fotos/camisa-azul-justdoit-2.jpeg",
+                    "../peitadecria/fotos/camisa-azul-justdoit-4.jpeg",
+                    "../peitadecria/fotos/camisa-azul-justdoit-3.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "GG" } },
+                { id: 9, nome: "Camisa Oversized Zara", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-azulescuro-basica-1.jpeg",
+                    "../peitadecria/fotos/carrossel1.jpeg",
+                    "../peitadecria/fotos/carrossel2.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 10, nome: "Camisa Oversized Casablanca", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-verde-casablanca-1.jpeg",
+                    "../peitadecria/fotos/camisa-verde-casablanca-2.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 11, nome: "Camisa Oversized Off-White", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-verde-detalhe-preto-1.jpeg",
+                    "../peitadecria/fotos/camisa-verde-detalhe-preto-2.jpeg",
+                    "../peitadecria/fotos/camisa-verde-detalhe-preto-3.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } },
+                { id: 12, nome: "Camisa Seleção brasileira", preco: "159.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/camisa-selecao-azul-1.jpeg"
+                ], informacoes: { tec: "malha tailandesa", tam: "P, M, G, GG" } }
+
+
+            ],
+            regatas: [
+                { id: 20, nome: "Regata Azul Lakers", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/regata-azul-lakers-1.jpeg",
+                    "../peitadecria/fotos/regata-azul-lakers-2.jpeg",
+                    "../peitadecria/fotos/regata-azul-lakers-3.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                 { id: 21, nome: "Regata Branca Nike", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/regata-branca-nike-1.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                { id: 22, nome: "Regata Preta Nike", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/regata-preta-fosforo-nike-1.jpeg",
+                    "../peitadecria/fotos/regata-preta-fosforo-nike-2.jpeg",
+                    "../peitadecria/fotos/regata-preta-fosforo-nike-3.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "M" } },
+                 { id: 23, nome: "Regata Lebron James", preco: "69.90", estoque: 1, fotos: [
+                    "../peitadecria/fotos/regata-preta-lebron-1.jpeg",
+                    "../peitadecria/fotos/regata-preta-lebron-2.jpeg"
+                ], informacoes: { tec: "malha suedine 30.1", tam: "G" } }
+
+
+            ],
+            meias: [
+                { id: 24, nome: "Meia Multimarcas", preco: "34.90", estoque: 10, fotos: [
+                    "../peitadecria/fotos/meia1.jpeg",
+                    "../peitadecria/fotos/meia2.jpeg",
+                    "../peitadecria/fotos/meia3.jpeg"
+                ], informacoes: { tec: "Algodão", tam: "Veste 38 a 43" } }
+            ]
+        };
+
+        let carrinho = [];
+        let produtoAtual = null;
+
+        function carregarVitrine() {
+            Object.keys(meusProdutos).forEach(cat => {
+                document.getElementById(`grid-${cat}`).innerHTML = meusProdutos[cat].map(p => `
+                    <div class="col-md-3"><div class="card" onclick='abrirProduto(${JSON.stringify(p)})'>
+                        <img src="${p.fotos[0]}" class="card-img-top">
+                        <div class="card-body px-0 text-center"><h6 class="fw-bold">${p.nome}</h6><p>R$ ${p.preco}</p></div>
+                    </div></div>`).join('');
+            });
+        }
+
+        function abrirProduto(produto) {
+    produtoAtual = produto;
+    document.getElementById('area-principal').style.display = 'none';
+    document.getElementById('detalhes-produto').style.display = 'block';
+    
+    // Atualiza Textos
+    document.getElementById('titulo-produto-detalhe').innerText = produto.nome;
+    document.getElementById('preco-produto-detalhe').innerText = 'R$ ' + produto.preco;
+    document.getElementById('estoque-disponivel').innerText = produto.estoque;
+    document.getElementById('qtd-selecionada').max = produto.estoque;
+    document.getElementById('qtd-selecionada').value = 1;
+    document.getElementById('info-detalhes').innerHTML = `
+        <p class="mb-1"><b>Tecido:</b> ${produto.informacoes.tec}</p>
+        <p><b>Tamanho:</b> ${produto.informacoes.tam}</p>
+    `;
+
+    // AGORA SIM: Criando o loop para TODAS as fotos
+    let fotosHtml = '';
+    produto.fotos.forEach((foto, index) => {
+        fotosHtml += `
+            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                <img src="${foto}" class="d-block w-100 carrossel-produto-img" alt="Foto ${index + 1}">
+            </div>
+        `;
+    });
+
+    // Monta o Carrossel completo com as setas de navegação
+    document.getElementById('imagens-produto-detalhe').innerHTML = `
+        <div class="carousel-inner">
+            ${fotosHtml}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#imagens-produto-detalhe" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imagens-produto-detalhe" data-bs-slide="next">
+            <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+    `;
+
+    window.scrollTo(0, 0);
+}
+
+        function adicionarAoCarrinho() {
+            const qtd = parseInt(document.getElementById('qtd-selecionada').value);
+            if(qtd > produtoAtual.estoque) return alert("Quantidade acima do estoque!");
+            carrinho.push({ ...produtoAtual, quantidade: qtd });
+            atualizarCarrinhoVisual();
+            new bootstrap.Offcanvas(document.getElementById('offcanvasCart')).show();
+        }
+
+        function atualizarCarrinhoVisual() {
+            document.getElementById('cart-count').innerText = carrinho.length;
+            const container = document.getElementById('itens-carrinho');
+            let total = 0;
+            container.innerHTML = carrinho.map((item, index) => {
+                total += parseFloat(item.preco) * item.quantidade;
+                return `<div class="d-flex mb-3 border-bottom pb-2">
+                    <img src="${item.fotos[0]}" style="width:50px; height:50px; object-fit:cover;" class="me-2">
+                    <div class="flex-grow-1"><h6 class="mb-0 small fw-bold">${item.nome}</h6><small>${item.quantidade}x R$ ${item.preco}</small></div>
+                    <button class="btn btn-sm text-danger" onclick="removerItem(${index})"><i class="bi bi-trash"></i></button>
+                </div>`;
+            }).join('');
+            document.getElementById('total-carrinho').innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        function removerItem(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinhoVisual();
+        }
+
+        function enviarCarrinhoWhatsApp() {
+            if(carrinho.length === 0) return alert("Carrinho vazio!");
+            let mensagem = "🔥 *NOVO PEDIDO - PEITA DE CRIA 011*\n\n";
+            carrinho.forEach(item => { mensagem += `• ${item.nome} | Qtd: ${item.quantidade} | R$ ${item.preco}\n`; });
+            mensagem += `\n*TOTAL: ${document.getElementById('total-carrinho').innerText}*`;
+            window.open(`https://wa.me/5511977409555?text=${encodeURIComponent(mensagem)}`);
+        }
+
+        function voltarParaVitrine(aba) {
+            document.getElementById('detalhes-produto').style.display = 'none';
+            document.getElementById('area-principal').style.display = 'block';
+            if(aba) { new bootstrap.Tab(document.getElementById(`${aba}-tab`)).show(); }
+        }
+
+        document.addEventListener("DOMContentLoaded", carregarVitrine);
+    </script>
+</body>
+</html>
